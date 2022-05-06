@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/filter.css">
 <link rel="stylesheet" href="css/nouislider.min.css">
-        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         html, body, #map {
@@ -34,32 +33,15 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="js/tailDT.js"></script>
 <script src="js/nouislider.min.js"></script>
 <script src="js/wNumb.js"></script>
         <script src="data/ShipDetections_1.js"></script>
         <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
-
-            if (e.target.feature.geometry.type === 'LineString') {
-              highlightLayer.setStyle({
-                color: '#ffff00',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: '#ffff00',
-                fillOpacity: 1
-              });
-            }
-            highlightLayer.openPopup();
-        }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[40.39454553478347,26.790099864426665],[47.08394985842599,43.91178950232121]]);
+        }).fitBounds([[39.61121949966383,25.88037720129526],[48.6108536677937,44.68960792511263]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -92,27 +74,13 @@
         layer_GoogleSatellite_0;
         map.addLayer(layer_GoogleSatellite_0);
         function pop_ShipDetections_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['field_1'] !== null ? autolinker.link(feature.properties['field_1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ShipDetections'] !== null ? autolinker.link(feature.properties['ShipDetections'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ShipDetections</th>\
+                        <td>' + (feature.properties['ShipDetections'] !== null ? autolinker.link(feature.properties['ShipDetections'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Detected_width</th>\
@@ -154,9 +122,8 @@
         }
 
         function style_ShipDetections_1_0(feature) {
-            switch(String(feature.properties['Date'])) {
-                case '20220201':
-                    return {
+            if (feature.properties['Date'] >= 20220201.000000 && feature.properties['Date'] <= 20220211.100000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -170,9 +137,9 @@
                 fillColor: 'rgba(48,18,59,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220202':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220211.100000 && feature.properties['Date'] <= 20220221.200000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -183,12 +150,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(53,30,89,1.0)',
+                fillColor: 'rgba(58,44,120,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220203':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220221.200000 && feature.properties['Date'] <= 20220231.300000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -199,12 +166,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(57,43,117,1.0)',
+                fillColor: 'rgba(65,69,170,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220204':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220231.300000 && feature.properties['Date'] <= 20220241.400000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -215,12 +182,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(61,54,143,1.0)',
+                fillColor: 'rgba(69,93,209,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220205':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220241.400000 && feature.properties['Date'] <= 20220251.500000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -231,12 +198,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(65,66,166,1.0)',
+                fillColor: 'rgba(71,116,236,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220206':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220251.500000 && feature.properties['Date'] <= 20220261.600000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -247,12 +214,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(67,78,186,1.0)',
+                fillColor: 'rgba(69,138,253,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220207':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220261.600000 && feature.properties['Date'] <= 20220271.700000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -263,12 +230,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(69,89,204,1.0)',
+                fillColor: 'rgba(59,160,254,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220208':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220271.700000 && feature.properties['Date'] <= 20220281.800000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -279,12 +246,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(70,101,219,1.0)',
+                fillColor: 'rgba(44,183,241,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220209':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220281.800000 && feature.properties['Date'] <= 20220291.900000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -295,12 +262,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(71,112,232,1.0)',
+                fillColor: 'rgba(30,203,219,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220210':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220291.900000 && feature.properties['Date'] <= 20220302.000000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -311,12 +278,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(71,122,242,1.0)',
+                fillColor: 'rgba(24,220,196,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220211':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220302.000000 && feature.properties['Date'] <= 20220312.100000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -327,12 +294,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(70,133,250,1.0)',
+                fillColor: 'rgba(31,234,174,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220212':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220312.100000 && feature.properties['Date'] <= 20220322.200000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -343,12 +310,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(68,143,254,1.0)',
+                fillColor: 'rgba(53,244,148,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220213':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220322.200000 && feature.properties['Date'] <= 20220332.300000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -359,12 +326,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(63,154,255,1.0)',
+                fillColor: 'rgba(85,250,118,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220214':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220332.300000 && feature.properties['Date'] <= 20220342.400000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -375,12 +342,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(57,164,252,1.0)',
+                fillColor: 'rgba(120,254,90,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220215':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220342.400000 && feature.properties['Date'] <= 20220352.500000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -391,12 +358,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(49,175,246,1.0)',
+                fillColor: 'rgba(152,254,67,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220216':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220352.500000 && feature.properties['Date'] <= 20220362.600000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -407,12 +374,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(42,185,239,1.0)',
+                fillColor: 'rgba(176,250,54,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220217':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220362.600000 && feature.properties['Date'] <= 20220372.700000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -423,12 +390,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(34,196,228,1.0)',
+                fillColor: 'rgba(199,240,52,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220218':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220372.700000 && feature.properties['Date'] <= 20220382.800000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -439,12 +406,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(29,204,218,1.0)',
+                fillColor: 'rgba(219,226,54,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220219':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220382.800000 && feature.properties['Date'] <= 20220392.900000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -455,348 +422,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(25,213,207,1.0)',
+                fillColor: 'rgba(236,210,58,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220220':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(24,221,195,1.0)',
-                interactive: true,
             }
-                    break;
-                case '20220221':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(25,227,185,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220222':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(31,234,175,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220223':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(40,239,163,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220224':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(51,243,150,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220225':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(66,247,136,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220226':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(81,250,122,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220227':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(97,253,108,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220228':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(114,254,94,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220301':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(130,255,82,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220302':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(145,255,71,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220303':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(159,254,63,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220304':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(169,251,57,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220305':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(181,248,53,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220306':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(192,244,52,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220307':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(202,238,52,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220308':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(212,232,53,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220309':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(222,224,55,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220310':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(230,217,56,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220311':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(237,208,58,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220312':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(244,200,58,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220313':
-                    return {
+            if (feature.properties['Date'] >= 20220392.900000 && feature.properties['Date'] <= 20220403.000000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -810,25 +441,9 @@
                 fillColor: 'rgba(248,191,57,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220314':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(252,182,55,1.0)',
-                interactive: true,
             }
-                    break;
-                case '20220315':
-                    return {
+            if (feature.properties['Date'] >= 20220403.000000 && feature.properties['Date'] <= 20220413.100000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -842,9 +457,9 @@
                 fillColor: 'rgba(254,171,51,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220316':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220413.100000 && feature.properties['Date'] <= 20220423.200000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -855,12 +470,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(254,160,47,1.0)',
+                fillColor: 'rgba(254,146,41,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220317':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220423.200000 && feature.properties['Date'] <= 20220433.300000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -871,12 +486,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(254,148,42,1.0)',
+                fillColor: 'rgba(249,119,29,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220318':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220433.300000 && feature.properties['Date'] <= 20220443.400000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -887,12 +502,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,135,37,1.0)',
+                fillColor: 'rgba(241,93,19,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220319':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220443.400000 && feature.properties['Date'] <= 20220453.500000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -903,12 +518,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(250,123,31,1.0)',
+                fillColor: 'rgba(230,71,11,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220321':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220453.500000 && feature.properties['Date'] <= 20220463.600000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -919,12 +534,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(247,110,25,1.0)',
+                fillColor: 'rgba(215,53,6,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220322':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220463.600000 && feature.properties['Date'] <= 20220473.700000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -935,12 +550,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,98,20,1.0)',
+                fillColor: 'rgba(196,37,3,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220323':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220473.700000 && feature.properties['Date'] <= 20220483.800000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -951,12 +566,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(238,86,16,1.0)',
+                fillColor: 'rgba(174,23,1,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220324':
-                    return {
+            }
+            if (feature.properties['Date'] >= 20220483.800000 && feature.properties['Date'] <= 20220493.900000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -967,172 +582,12 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(233,75,12,1.0)',
+                fillColor: 'rgba(149,12,1,1.0)',
                 interactive: true,
             }
-                    break;
-                case '20220325':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(226,67,10,1.0)',
-                interactive: true,
             }
-                    break;
-                case '20220326':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(220,58,7,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220327':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(211,50,5,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220328':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(203,42,4,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220329':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(194,35,2,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220330':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,29,1,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220331':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(172,22,1,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220402':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(160,17,1,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220403':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(147,11,1,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20220404':
-                    return {
-                pane: 'pane_ShipDetections_1',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(134,7,2,1.0)',
-                interactive: true,
-            }
-                    break;
-                default:
-                    return {
+            if (feature.properties['Date'] >= 20220493.900000 && feature.properties['Date'] <= 20220504.000000 ) {
+                return {
                 pane: 'pane_ShipDetections_1',
                 radius: 4.0,
                 opacity: 1,
@@ -1146,7 +601,6 @@
                 fillColor: 'rgba(122,4,3,1.0)',
                 interactive: true,
             }
-                    break;
             }
         }
         map.createPane('pane_ShipDetections_1');
@@ -1169,16 +623,8 @@
         });
         bounds_group.addLayer(layer_ShipDetections_1);
         map.addLayer(layer_ShipDetections_1);
-        var osmGeocoder = new L.Control.Geocoder({
-            collapsed: true,
-            position: 'topleft',
-            text: 'Search',
-            title: 'Testing'
-        }).addTo(map);
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'ShipDetections<br /><table><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220201202202110.png" /></td><td>20220201 - 20220211</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220211202202211.png" /></td><td>20220211 - 20220221</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220221202202312.png" /></td><td>20220221 - 20220231</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220231202202413.png" /></td><td>20220231 - 20220241</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220241202202524.png" /></td><td>20220241 - 20220252</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220252202202625.png" /></td><td>20220252 - 20220262</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220262202202726.png" /></td><td>20220262 - 20220272</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220272202202827.png" /></td><td>20220272 - 20220282</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220282202202928.png" /></td><td>20220282 - 20220292</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_20220292202203029.png" /></td><td>20220292 - 20220302</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203022022031210.png" /></td><td>20220302 - 20220312</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203122022032211.png" /></td><td>20220312 - 20220322</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203222022033212.png" /></td><td>20220322 - 20220332</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203322022034213.png" /></td><td>20220332 - 20220342</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203422022035314.png" /></td><td>20220342 - 20220353</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203532022036315.png" /></td><td>20220353 - 20220363</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203632022037316.png" /></td><td>20220363 - 20220373</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203732022038317.png" /></td><td>20220373 - 20220383</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203832022039318.png" /></td><td>20220383 - 20220393</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202203932022040319.png" /></td><td>20220393 - 20220403</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204032022041320.png" /></td><td>20220403 - 20220413</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204132022042321.png" /></td><td>20220413 - 20220423</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204232022043322.png" /></td><td>20220423 - 20220433</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204332022044323.png" /></td><td>20220433 - 20220443</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204432022045424.png" /></td><td>20220443 - 20220454</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204542022046425.png" /></td><td>20220454 - 20220464</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204642022047426.png" /></td><td>20220464 - 20220474</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204742022048427.png" /></td><td>20220474 - 20220484</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204842022049428.png" /></td><td>20220484 - 20220494</td></tr><tr><td style="text-align: center;"><img src="legend/ShipDetections_1_202204942022050429.png" /></td><td>20220494 - 20220504</td></tr></table>': layer_ShipDetections_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
@@ -1199,7 +645,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"Day": "int","Month": "int","Year": "int"};
+        var Filters = {"Year": "int","Date": "int","Month": "int"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -1291,86 +737,6 @@
         }
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_Day = document.createElement("div");
-            div_Day.id = "div_Day";
-            div_Day.className = "slider";
-            document.getElementById("menu").appendChild(div_Day);
-            var lab_Day = document.createElement('div');
-            lab_Day.innerHTML  = 'Day: <span id="val_Day"></span>';
-            lab_Day.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_Day);
-            var reset_Day = document.createElement('div');
-            reset_Day.innerHTML = 'clear filter';
-            reset_Day.className = 'filterlabel';
-            lab_Day.className = 'filterlabel';
-            reset_Day.onclick = function() {
-                sel_Day.noUiSlider.reset();
-            };
-            document.getElementById("menu").appendChild(reset_Day);
-            var sel_Day = document.getElementById('div_Day');
-            noUiSlider.create(sel_Day, {
-                connect: true,
-                start: [1, 31],
-                step: 1,
-                format: wNumb({
-                    decimals: 0,
-                    }),
-                range: {
-                min: 1,
-                max: 31
-                }
-            });
-            sel_Day.noUiSlider.on('update', function (values) {
-            filterVals =[];
-            for (value in values){
-            filterVals.push(parseInt(value))
-            }
-            val_Day = document.getElementById('val_Day');
-            val_Day.innerHTML = values.join(' - ');
-                filterFunc()
-            });
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Month = document.createElement("div");
-            div_Month.id = "div_Month";
-            div_Month.className = "slider";
-            document.getElementById("menu").appendChild(div_Month);
-            var lab_Month = document.createElement('div');
-            lab_Month.innerHTML  = 'Month: <span id="val_Month"></span>';
-            lab_Month.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_Month);
-            var reset_Month = document.createElement('div');
-            reset_Month.innerHTML = 'clear filter';
-            reset_Month.className = 'filterlabel';
-            lab_Month.className = 'filterlabel';
-            reset_Month.onclick = function() {
-                sel_Month.noUiSlider.reset();
-            };
-            document.getElementById("menu").appendChild(reset_Month);
-            var sel_Month = document.getElementById('div_Month');
-            noUiSlider.create(sel_Month, {
-                connect: true,
-                start: [2, 4],
-                step: 1,
-                format: wNumb({
-                    decimals: 0,
-                    }),
-                range: {
-                min: 2,
-                max: 4
-                }
-            });
-            sel_Month.noUiSlider.on('update', function (values) {
-            filterVals =[];
-            for (value in values){
-            filterVals.push(parseInt(value))
-            }
-            val_Month = document.getElementById('val_Month');
-            val_Month.innerHTML = values.join(' - ');
-                filterFunc()
-            });
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
             var div_Year = document.createElement("div");
             div_Year.id = "div_Year";
             div_Year.className = "slider";
@@ -1407,6 +773,86 @@
             }
             val_Year = document.getElementById('val_Year');
             val_Year.innerHTML = values.join(' - ');
+                filterFunc()
+            });
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Date = document.createElement("div");
+            div_Date.id = "div_Date";
+            div_Date.className = "slider";
+            document.getElementById("menu").appendChild(div_Date);
+            var lab_Date = document.createElement('div');
+            lab_Date.innerHTML  = 'Date: <span id="val_Date"></span>';
+            lab_Date.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_Date);
+            var reset_Date = document.createElement('div');
+            reset_Date.innerHTML = 'clear filter';
+            reset_Date.className = 'filterlabel';
+            lab_Date.className = 'filterlabel';
+            reset_Date.onclick = function() {
+                sel_Date.noUiSlider.reset();
+            };
+            document.getElementById("menu").appendChild(reset_Date);
+            var sel_Date = document.getElementById('div_Date');
+            noUiSlider.create(sel_Date, {
+                connect: true,
+                start: [20220201, 20220504],
+                step: 1,
+                format: wNumb({
+                    decimals: 0,
+                    }),
+                range: {
+                min: 20220201,
+                max: 20220504
+                }
+            });
+            sel_Date.noUiSlider.on('update', function (values) {
+            filterVals =[];
+            for (value in values){
+            filterVals.push(parseInt(value))
+            }
+            val_Date = document.getElementById('val_Date');
+            val_Date.innerHTML = values.join(' - ');
+                filterFunc()
+            });
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Month = document.createElement("div");
+            div_Month.id = "div_Month";
+            div_Month.className = "slider";
+            document.getElementById("menu").appendChild(div_Month);
+            var lab_Month = document.createElement('div');
+            lab_Month.innerHTML  = 'Month: <span id="val_Month"></span>';
+            lab_Month.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_Month);
+            var reset_Month = document.createElement('div');
+            reset_Month.innerHTML = 'clear filter';
+            reset_Month.className = 'filterlabel';
+            lab_Month.className = 'filterlabel';
+            reset_Month.onclick = function() {
+                sel_Month.noUiSlider.reset();
+            };
+            document.getElementById("menu").appendChild(reset_Month);
+            var sel_Month = document.getElementById('div_Month');
+            noUiSlider.create(sel_Month, {
+                connect: true,
+                start: [2, 5],
+                step: 1,
+                format: wNumb({
+                    decimals: 0,
+                    }),
+                range: {
+                min: 2,
+                max: 5
+                }
+            });
+            sel_Month.noUiSlider.on('update', function (values) {
+            filterVals =[];
+            for (value in values){
+            filterVals.push(parseInt(value))
+            }
+            val_Month = document.getElementById('val_Month');
+            val_Month.innerHTML = values.join(' - ');
                 filterFunc()
             });
         </script>

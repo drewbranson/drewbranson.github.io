@@ -1,0 +1,26 @@
+.bottom-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .bottom-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .bottom-nav li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .bottom-nav a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+  }
+  

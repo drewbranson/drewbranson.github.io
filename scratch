@@ -1,0 +1,8 @@
+ <div class="bottom-nav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="https://drewbranson.github.io">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://drewbranson.github.io/blog">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://drewbranson.github.io/Videos">Videos</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://drewbranson.github.io/Photography">Photography</a></li>
+          </ul>
+        </div>

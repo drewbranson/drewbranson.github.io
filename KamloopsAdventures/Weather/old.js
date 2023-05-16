@@ -1,3 +1,5 @@
+/* Name of the file: tutorial.js */
+
 const parser = new DOMParser();
 
 // Async function used to retrieve start and end time from RADAR_1KM_RRAI layer GetCapabilities document
@@ -69,9 +71,10 @@ function updateLayers() {
   layers[1].getSource().updateParams({'TIME': currentTime.toISOString().split('.')[0]+"Z"});
   layers[2].getSource().updateParams({'TIME': currentTime.toISOString().split('.')[0]+"Z"});
 }
+
 function updateInfo() {
   let el = document.getElementById('info');
-  el.innerHTML = `Time / Heure: ${currentTime.toISOString().substr(0, 16) + "Z"}`;
+  el.innerHTML = `Time / Heure: ${currentTime.toISOString().substr(0, 16)+"Z"}`
 }
 
 // Disable/enable buttons depending on the state of the map
@@ -93,13 +96,13 @@ function updateButtons() {
 }
 
 function disableButtons(buttons) {
-  for (var i = 0; i < buttons.length; i++) {
+  for (var i = 0; i < buttons.length; i++){
     buttons[i].disabled = true;
   }
 }
 
 function enableButtons(buttons) {
-  for (var i = 0; i < buttons.length; i++) {
+  for (var i = 0; i < buttons.length; i++){
     buttons[i].disabled = false;
   }
 }
@@ -118,12 +121,12 @@ function setTime() {
 
 function togglePlayPause() {
   if (animationId !== null) {
-    playPauseButton.firstElementChild.className = "fa fa-play";
+    playPauseButton.firstElementChild.className = "fa fa-play"
     window.clearInterval(animationId);
     animationId = null;
     updateButtons();
   } else {
-    playPauseButton.firstElementChild.className = "fa fa-pause";
+    playPauseButton.firstElementChild.className = "fa fa-pause"
     animationId = window.setInterval(setTime, 500 / frameRate);
     updateButtons();
   }
@@ -138,7 +141,7 @@ function fastBackward() {
       updateLayers();
       updateInfo();
       updateButtons();
-    });
+    })
   }
 }
 
@@ -154,8 +157,9 @@ function stepBackward() {
         updateLayers();
         updateInfo();
         updateButtons();
-      });
-    } else {
+      })
+    }
+    else {
       updateLayers();
       updateInfo();
       updateButtons();
@@ -182,11 +186,6 @@ function fastForward() {
   }
 }
 
-function toggleLayers() {
-  let layer = layers[1]; // Assuming you want to toggle the visibility of the second layer
-  layer.setVisible(!layer.getVisible());
-}
-
 let fastBackwardButton = document.getElementById('fast-backward');
 fastBackwardButton.addEventListener('click', fastBackward, false);
 
@@ -202,9 +201,6 @@ stepForwardButton.addEventListener('click', stepForward, false);
 let fastForwardButton = document.getElementById('fast-forward');
 fastForwardButton.addEventListener('click', fastForward, false);
 
-let toggleLayerButton = document.getElementById('toggle-layers');
-toggleLayerButton.addEventListener('click', toggleLayers, false);
-
 // Initialize the map
 function initMap() {
   getRadarStartEndTime().then(data => {
@@ -214,7 +210,6 @@ function initMap() {
     updateLayers();
     updateInfo();
     updateButtons();
-  });
+  })
 }
-
 initMap();

@@ -19,11 +19,16 @@
 
 <body>
   <div id="map"></div>
-  <div id="back-button" style="position: absolute; top: 10px; right: 10px; z-index: 100;">
-    <button class="btn btn-primary" type="button">
-      <i class="fa fa-arrow-left"></i>
-    </button>
+
+  <div id="back-button" style="position: absolute; top: 10px; right: 10px;">
+    <button class="btn btn-primary" onclick="goBack()"><i class="fa fa-arrow-left"></i></button>
   </div>
+  
+  <script>
+    function goBack() {
+      window.location.href = "https://drewbranson.github.io/KamloopsAdventures/";
+    }
+  </script>
   
   <div id="controller" role="group" aria-label="Animation controls" style="background: #ececec; padding: 0.5rem;">
     <button id="fast-backward" class="btn btn-primary btn-sm" type="button"><i class="fa fa-fast-backward" style="padding: 0rem 1rem"></i></button>

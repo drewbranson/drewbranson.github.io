@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Interactive Web Map</title>
+    <title>Kamloops Adventures</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     <style>
-         #map {
+        #map {
             height: 90vh;
         }
 
         #buttons {
             margin-top: 10px;
         }
+
+        #weather-forecast {
+            position: fixed;
+            top: 0%;
+            right: 0%;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <div id="map"></div>
+    <div id="weather-forecast">
+        <a href="https://drewbranson.github.io/KamloopsAdventures/Weather/index.html" target="_blank">
+            <h3>7-Day Weather Forecast</h3>
+        </a>
+        <ul>
+            <li>Day 1: Forecast data</li>
+            <li>Day 2: Forecast data</li>
+            <li>Day 3: Forecast data</li>
+            <li>Day 4: Forecast data</li>
+            <li>Day 5: Forecast data</li>
+            <li>Day 6: Forecast data</li>
+            <li>Day 7: Forecast data</li>
+        </ul>
+    </div> 
     <div id="buttons">
         <button onclick="toggleMapView('street')">Street View</button>
         <button onclick="toggleMapView('satellite')">Satellite View</button>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script>
         var map;

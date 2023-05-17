@@ -6,6 +6,17 @@
       width: 100%;
       height: 95%;
     }
+    #temperature-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none; /* Ensure the canvas doesn't interfere with map interactions */
+      z-index: 100; /* Adjust the z-index to make sure the canvas is on top of the map */
+    }
+
+
+  </style>
+
   </style>
   <title>GeoMet Animated WMS Time OpenLayers Example</title>
   <meta name="description" content="GeoMet OpenLayers Example">
@@ -18,6 +29,8 @@
 </head>
 
 <body>
+
+  <div id="temperature-canvas"></div>
   <div id="map"></div>
 
   <div id="back-button" style="position: absolute; top: 10px; right: 10px;">
@@ -36,7 +49,9 @@
     <button id="play-pause" class="btn btn-primary btn-sm" type="button"><i class="fa fa-play" style="padding: 0rem 1rem"></i></button>
     <button id="step-forward" class="btn btn-primary btn-sm" type="button"><i class="fa fa-step-forward" style="padding: 0rem 1rem"></i></button>
     <button id="fast-forward" class="btn btn-primary btn-sm" type="button"><i class="fa fa-fast-forward" style="padding: 0rem 1rem"></i></button>
-    <button id="toggle-layers">Toggle Radar</button>
+    <button id="toggle-layers">Radar</button>
+    <button id="toggle-temperature">Temperature</button>
+    <button id="toggle-layers">Air Quality</button>
     <span id="info" style="padding-left: 0.5rem;"></span>
   </div>
 

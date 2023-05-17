@@ -20,6 +20,8 @@ let startTime = null;
 let endTime = null;
 let defaultTime = null;
 let currentTime = null;
+let temperatureLayer;
+let airQualityLayer;
 
 let layers = [
   new ol.layer.Tile({
@@ -41,7 +43,26 @@ let layers = [
       transition: 0,
       crossOrigin: 'Anonymous'
     })
-  })
+  }),
+  temperatureLayer = new ol.layer.Tile({
+    opacity: 0.4,
+    source: new ol.source.TileWMS({
+      url: 'https://geo.weather.gc.ca/geomet/',
+      params: {'LAYERS': 'GDPS.ETA_TT', 'TILED': true},
+      transition: 0,
+      crossOrigin: 'Anonymous'
+    })
+  }),
+  // new ol.layer.Image({
+  //   source: new ol.source.ImageWMS({
+  //     format: 'image/png',
+  //     url: 'https://geo.weather.gc.ca/geomet/',
+  //     params: {'LAYERS': 'RADAR_COVERAGE_RRAI.INV', 'TILED': true},
+  //     transition: 0,
+  //     crossOrigin: 'Anonymous'
+  //   })
+  // }),
+  
 ];
 
 let map = new ol.Map({
@@ -52,6 +73,16 @@ let map = new ol.Map({
     zoom: 9
   })
 });
+
+let temperatureCanvas = document.createElement('canvas');
+temperatureCanvas.setAttribute('id', 'temperature-canvas');
+temperatureCanvas.style.position = 'absolute';
+temperatureCanvas.style.top = '0';
+temperatureCanvas.style.left = '0';
+temperatureCanvas.width = map.getSize()[0];
+temperatureCanvas.height = map.getSize()[1];
+document.getElementById('map').appendChild(temperatureCanvas);
+
 
 // If the image couldn't load due to a change in the time extent, get the new time extent
 layers[1].getSource().on("imageloaderror", () => {
@@ -73,6 +104,69 @@ function updateInfo() {
   let el = document.getElementById('info');
   el.innerHTML = `Time / Heure: ${currentTime.toISOString().substr(0, 16) + "Z"}`;
 }
+
+
+function displayTemperatureValues() {
+  let mapSize = map.getSize();
+  let temperatureSource = temperatureLayer.getSource();
+
+  let ctx = temperatureCanvas.getContext('2d');
+  ctx.clearRect(0, 0, mapSize[0], mapSize[1]);
+
+  temperatureSource.on('tileloadend', function () {
+    let temperatureFeatures = temperatureSource.getFeatures();
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'white';
+
+    temperatureFeatures.forEach(function (feature) {
+      let temperatureValue = feature.get('temperature');
+      let geometry = feature.getGeometry();
+      let coordinate = geometry.getCoordinates();
+      let pixel = map.getPixelFromCoordinate(coordinate);
+      let extent = geometry.getExtent();
+      let pixelRatio = map.getPixelRatio();
+      let textX = (pixel[0] - extent[0]) / pixelRatio + extent[0];
+      let textY = (pixel[1] - extent[1]) / pixelRatio + extent[1];
+
+      ctx.fillText(temperatureValue, textX, textY);
+    });
+  });
+}
+
+
+
+
+
+
+
+
+function clearTemperatureValues() {
+  let ctx = temperatureCanvas.getContext('2d');
+  ctx.clearRect(0, 0, temperatureCanvas.width, temperatureCanvas.height);
+}
+
+
+
+
+
+function toggleTemperatureLayer() {
+  temperatureLayer.setVisible(!temperatureLayer.getVisible());
+
+  if (temperatureLayer.getVisible()) {
+    displayTemperatureValues();
+  } else {
+    clearTemperatureValues();
+  }
+}
+
+
+
+function toggleAirQualityLayer() {
+  airQualityLayer.setVisible(!airQualityLayer.getVisible());
+}
+
 
 // Disable/enable buttons depending on the state of the map
 function updateButtons() {
@@ -204,6 +298,13 @@ fastForwardButton.addEventListener('click', fastForward, false);
 
 let toggleLayerButton = document.getElementById('toggle-layers');
 toggleLayerButton.addEventListener('click', toggleLayers, false);
+
+let toggleTemperatureButton = document.getElementById('toggle-temperature');
+toggleTemperatureButton.addEventListener('click', toggleTemperatureLayer, false);
+
+// let toggleAirQualityButton = document.getElementById('toggle-air-quality');
+// toggleAirQualityButton.addEventListener('click', toggleAirQualityLayer, false);
+
 
 // Initialize the map
 function initMap() {

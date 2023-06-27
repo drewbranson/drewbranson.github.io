@@ -13,20 +13,53 @@
       text-align: center;
     }
 
-    .link-container {
+    .link-container2 {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       margin-top: 20px;
     }
 
-    .link-item {
+    .link-item2 {
       background-color: #f5f5f5;
       border-radius: 5px;
       padding: 10px;
       margin: 10px;
       width: 300px;
     }
+      .link-container2 {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .link-item2 {
+      width: 45%;
+    }
+
+    .link-item2 a {
+      display: block;
+      text-align: center;
+    }
+
+    .map-container2 {
+      width: 45%;
+    }
+
+      .link-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      }
+
+    .link-item {
+      width: 23%;
+      }
+
+    .link-item a {
+      display: block;
+      text-align: center;
+      }
 
     .link-item a {
       color: #333;
@@ -148,24 +181,37 @@
 
   <div class="link-container">
     <div class="link-item">
-      <a href="https://nrs.objectstore.gov.bc.ca/kuwyyf/wells_gray_murtle_lake_brochure_map_541992be31.pdf">BC Parks Map
-        <img src="https://newbbb.files.wordpress.com/2015/09/lake-map01.jpg" alt="Image 1" >
+      <a href="https://kamloopstrails.net/2011/02/07/murtle-lake-west-arm/">
+        Travel Blog
+        <img src="https://i0.wp.com/kamloopstrails.net/wp-content/uploads/2011/02/murtlelake_lake_map.gif?ssl=1" alt="Image 1">
+      </a>
+      <p>Travel Guide</p>
+    </div>
 
+    <div class="link-item">
+      <a href="https://nrs.objectstore.gov.bc.ca/kuwyyf/wells_gray_murtle_lake_brochure_map_541992be31.pdf">
+        BC Parks Map
+        <img src="https://newbbb.files.wordpress.com/2015/09/lake-map01.jpg" alt="Image 1">
       </a>
       <p>Official BC Park Brochure for Murtle Lake</p>
     </div>
-    <div class="container">
 
-        <iframe
-            class="googlemap" frameborder="0" scrolling="no" width="100%" height="400"
-            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d797595.6461008618!2d-120.4708164522146!3d51.38664906047239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x537e2cd33d0d3b31%3A0xd23e96aa9a6945e7!2skamloops!3m2!1d50.674521999999996!2d-120.32726749999999!4m5!1s0x5382218ac63380a7%3A0x277c9f32c70f055!2sMurtle%20Lagoon%20Launch%20Site%2C%20Wells%20Gray%20Country%2C%20BC%20V0E%201J0%2C%20Canada!3m2!1d52.0719159!2d-119.5946348!5e1!3m2!1sen!2suk!4v1687809454200!5m2!1sen!2suk" &amp;output=embed"></iframe>
-    
+    <div class="link-item">
+      <iframe class="googlemap" frameborder="0" scrolling="no" width="100%" height="400"
+        src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d797595.6461008618!2d-120.4708164522146!3d51.38664906047239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x537e2cd33d0d3b31%3A0xd23e96aa9a6945e7!2skamloops!3m2!1d50.674521999999996!2d-120.32726749999999!4m5!1s0x5382218ac63380a7%3A0x277c9f32c70f055!2sMurtle%20Lagoon%20Launch%20Site%2C%20Wells%20Gray%20Country%2C%20BC%20V0E%201J0%2C%20Canada!3m2!1d52.0719159!2d-119.5946348!5e1!3m2!1sen!2suk!4v1687809454200!5m2!1sen!2suk"
+        allowfullscreen></iframe>
     </div>
+
+    <div class="link-item">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1h9zQxcjO99FggDVXXLrS_euDms9dXQ64&ehbc=2E312F" width="100%" height="400"></iframe>
+    </div>
+  </div>
   <div class="map-container">
 
     <iframe class="alltrails" src="https://www.alltrails.com/widget/trail/canada/british-columbia/murtle-lake?u=m&sh=zhq5eb" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running">
     </iframe>
   </div>
+  
   <div class="schedule-container">
     <div class="schedule-item">
       <h3>Friday, June 30th</h3>
@@ -192,7 +238,9 @@
     </div>
 
     <div class="schedule-item">
-      <h3>Do something?</h3>
+      <h3>Tuesday, July 4th</h3>
+      <p>Rock, flag and eagle day</p>
+      <p>Do something?</p>
       <p>Canoe back to launch site (?hrs)</p>
       <p>Portage back to cars (1.5 hrs?)</p>
       <p>Drive back to kamloops (3.5 hrs)</p>
@@ -201,7 +249,18 @@
 
   </div>
   
-  <div class="things-to-do-container">
+  
+  <section id="meal-plan">
+    <h2>Meal Plan</h2>
+    <iframe src="https://docs.google.com/document/d/1xqPBFGTiTYki2cXSjzpyRslRW5ZIhhQWzBs0ScEsM30/edit?usp=sharing?embedded=true&rm=minimal&hidecontrols=true" width="100%" height="600"></iframe>
+    </div>
+  </section>
+  <section id="gear-list">
+    <h2>Gear List</h2>
+    <iframe src="https://docs.google.com/document/d/1Or_j6dh1iSgcLS3yHsEBcump0ZPvA7GB3GikVBT_HUU/edit?usp=sharing?embedded=true" width="100%" height="600"></iframe>
+  </section>
+
+  <div class="things-to-do-container"  style="margin: 0 auto;">
     <div class="things-to-do-item">
       <h3>Wavy Ridge Trail</h3>
       <p>Head out on this 11.7-km out-and-back trail near Blue River, British Columbia. Generally considered a challenging route, it takes an average of 5 h 55 min to complete. This trail is great for backpacking, birding, and camping, and it's unlikely you'll encounter many other people while exploring.</p>
@@ -215,21 +274,32 @@
     </div>
 
     <div class="things-to-do-item">
-        <h3>Wavy Ridge to Straight Lake</h3>
+        <h3>McDougall Falls Trail and Paddle</h3>
         <p>Explore this 8.0-km out-and-back trail near Blue River, British Columbia. Generally considered an easy route, it takes an average of 2 h 0 min to complete. This trail is great for hiking, paddle sports, and running, and it's unlikely you'll encounter many other people while exploring.</p>
         <iframe class="alltrails" src="https://www.alltrails.com/widget/trail/canada/british-columbia/mcdougall-falls-trail-and-paddle?u=m&sh=zhq5eb" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"></iframe>
     </div>
 
   </div>
-  
-  <section id="meal-plan">
-    <h2>Meal Plan</h2>
-    <iframe src="https://docs.google.com/document/d/1xqPBFGTiTYki2cXSjzpyRslRW5ZIhhQWzBs0ScEsM30/edit?usp=sharing?embedded=true&rm=minimal&hidecontrols=true" width="100%" height="600"></iframe>
+
+  <div class="link-container2">
+    <div class="link-item2">
+      <a href="https://offtracktravel.ca/murtle-lake-wells-gray/#trip-planning-guide">
+        Travel Blog
+        <img src="https://offtracktravel.ca/wp-content/uploads/2020/06/wavy-view-murtle-lake-campsite-768x576.jpg.webp" alt="Image 1" style="width: 100%;">
+      </a>
+      <p style="margin: 0;">Travel Guide</p>
     </div>
-  </section>
-  <section id="gear-list">
-    <h2>Gear List</h2>
-    <iframe src="https://docs.google.com/document/d/1Or_j6dh1iSgcLS3yHsEBcump0ZPvA7GB3GikVBT_HUU/edit?usp=sharing?embedded=true&rm=minimal&hidecontrols=true" width="100%" height="600"></iframe>
-  </section>
+    <div class="map-container2">
+      <iframe width="600" height="600" frameborder="0" scrolling="no" allowfullscreen src="https://arcg.is/1XTXij"></iframe>
+    </div>
+  </div>
+  
+
+  <iframe 
+    width=100% height="480" src="https://www.youtube.com/embed/UxHWoLRn-94" title="Exploring Murtle Lake - Paddling to the Wavy Crest Trail, Well Gray Park, BC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+  </iframe>
+  <iframe 
+    width=100% height="480" src="https://www.youtube.com/embed/4fSvGmI2fbc" title="Murtle Lake 2020" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+  </iframe>
 </body>
 </html>

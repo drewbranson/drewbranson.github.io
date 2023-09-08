@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kamloops Adventures</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <style>
+        #map {
+            height: 90vh;
+        }
+
+        #buttons {
+            margin-top: 10px;
+        }
+
+        #weather-forecast {
+            position: fixed;
+            top: 0%;
+            right: 0%;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="weather-forecast">
+        <a href="https://drewbranson.github.io/KamloopsAdventures/Weather/index.html" target="_blank">
+            <h3>7-Day Weather Forecast</h3>
+        </a>
+        <ul id="forecast-list"></ul>
+    </div> 
+    <div id="buttons">
+        <button onclick="toggleMapView('street')">Street View</button>
+        <button onclick="toggleMapView('satellite')">Satellite View</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script>
+        var map;
+        var streetLayer;
+        var satelliteLayer;
+
+        function initMap() {
+            // Initialize the map
+            map = L.map('map').setView([50.674522, -120.32726739999998], 10);
+
+            // Add the street tile layer
+            streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                detectRetina: true
+            }).addTo(map);
+
+            // Add the satellite tile layer
+            satelliteLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                detectRetina: true
+            });
+        }
+
+        function toggleMapView(view) {
+            if (view === 'street') {
+                map.removeLayer(satelliteLayer);
+                map.addLayer(streetLayer);
+            } else if (view === 'satellite') {
+                map.removeLayer(streetLayer);
+                map.addLayer(satelliteLayer);
+            }
+        }
+        function fetchWeatherForecast() {
+            var forecastList = document.getElementById('forecast-list');
+            forecastList.innerHTML = ''; // Clear the existing forecast list
+
+            // Make a request to the MSC GeoMet API
+            // Replace API_KEY with your actual API key
+            fetch('https://api.weather.gc.ca/forecast?api_key=API_KEY&site=SITE_ID&format=json')
+                .then(response => response.json())
+                .then(data => {
+                    // Process the forecast data and populate the list
+                    var forecast = data.properties.periods;
+                    forecast.forEach(day => {
+                        var listItem = document.createElement('li');
+                        listItem.textContent = `${day.name}: ${day.detailedForecast}`;
+                        forecastList.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching weather forecast:', error);
+                });
+        }
+
+
+        // Initialize the map and set the default view
+        initMap();
+        toggleMapView('street');
+
+        // Fetch the weather forecast when the page loads
+        fetchWeatherForecast();
+    </script>
+
+</body>
+</html>
+
+  

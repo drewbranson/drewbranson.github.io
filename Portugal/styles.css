@@ -196,3 +196,18 @@ footer {
     max-height: 100%; /* Ensure the image fits within the div height */
     display: block; /* Remove any extra space below the image */
 }
+
+
+.youtube-embeds {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adjust the gap between the YouTube embeds */
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+.youtube-embeds iframe {
+    width: 300px; /* Set a fixed width for each YouTube embed */
+    height: 168px; /* Set a fixed height for each YouTube embed */
+}

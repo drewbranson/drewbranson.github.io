@@ -1,0 +1,238 @@
+/* Reset some default browser styles */
+body, h1, h2, form, ul, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.trip-itinerary {
+    margin-top: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+/* Style for the itinerary calendar */
+.itinerary-calendar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Style for the website details */
+.website-details {
+    flex: 1;
+}
+
+.website-details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.website-details p {
+    margin: 5px 0;
+}
+
+.website-details a {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.website-details a:hover {
+    background-color: #555;
+}
+
+/* Style for the website container */
+.website-container {
+    display: flex;
+    margin: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.website-preview {
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    margin-right: 20px;
+    overflow: hidden; /* Hide overflowing content (e.g., oversized images) */
+}
+
+.website-preview img {
+    max-width: 100%; /* Ensure the image fits within the div width */
+    max-height: 100%; /* Ensure the image fits within the div height */
+    display: block; /* Remove any extra space below the image */
+}
+
+.youtube-embeds {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adjust the gap between the YouTube embeds */
+    margin: 20px 0; /* Add margin for spacing */
+}
+
+.youtube-embeds iframe {
+    width: 300px; /* Set a fixed width for each YouTube embed */
+    height: 168px; /* Set a fixed height for each YouTube embed */
+}
+
+.alltrails {
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    position: relative;
+}
+
+.nav-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    margin: 0.5em 0;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block; /* Show button on smaller screens */
+    }
+
+    .nav-menu {
+        display: none; /* Hide menu by default */
+        background-color: #333;
+        position: absolute;
+        top: 3em;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu.show {
+        display: block; /* Show menu when toggled */
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    body {
+        flex-direction: row;
+    }
+    
+    nav {
+        width: 200px;
+        height: 100vh;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        position: fixed;
+    }
+
+    main {
+        margin-left: 220px; /* Add margin to the main content */
+        padding: 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+
+.website-container1 {
+    margin-bottom: 40px;
+}
+
+iframe {
+    width: 100%;
+    max-width: 100%;
+}
